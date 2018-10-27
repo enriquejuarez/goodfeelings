@@ -672,3 +672,16 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .hidden-class{
     display: none !important;
 }
+.btn-editar{
+    position: absolute;
+    border-radius: 50%;
+    color: white;
+    background-color: #00a5cb;
+    z-index: 1000;
+    font-size: 50px;
+}
+.btn-editar:hover{
+    background-color: #0190b0;
+    color: white;
+    font-size: 53px;
+}

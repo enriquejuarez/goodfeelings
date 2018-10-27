@@ -14,9 +14,9 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
             @auth
-                <a href="#" style="float: right;padding: 10px; position: absolute;top: 150px; left: 10px;color: red;z-index: 1000;"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-default btn-editar" href="#" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
             @endauth
-                <div class="item active">
+                <div class="item">
                     <img src="imagenes/Portada1.jpg" alt="" style="width:100%;">
                     <div class="row">
                          <div class="carousel-caption" id="viaje">
