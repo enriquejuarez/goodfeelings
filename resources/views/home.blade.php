@@ -16,32 +16,18 @@
             @auth
                 <a class="btn btn-default btn-editar" href="#" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
             @endauth
-                <div class="item">
-                    <img src="imagenes/Portada1.jpg" alt="" style="width:100%;">
+            @foreach($fotos as $foto)
+                <div class="item {{  $loop->iteration === 1 ? 'active' : '' }}">
+                    <img src="{{ $foto->file }}" alt="" style="width:100%;">
                     <div class="row">
-                         <div class="carousel-caption" id="viaje">
+                         <div class="carousel-caption" id="{{ $foto->id }}">
                          <!--<p>Celebra en </p>
                          <p>Cancún-Riviera Maya </p>
                         <!- -<p>LA is always so much fun!</p>-->
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <img src="imagenes/Portada2.jpg" alt="" style="width:100%;">
-                    <div class="row carousel-caption" id="viaje">
-                    <!--<p>Celebra en </p>
-                         <p>Cancún-Riviera Maya </p>
-                        <!- -<p>LA is always so much fun!</p>-->
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="imagenes/Portada3.jpg" alt="" style="width:100%;">
-                    <div class="row carousel-caption" id="viaje">
-                   <!-- <p>Celebra en </p>
-                         <p>Cancún-Riviera Maya </p>
-                        <!- -<p>LA is always so much fun!</p>-->
-                    </div>
-                </div>
+            @endforeach
             </div>
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -59,37 +45,40 @@
     <!--PAQUETES DISPONIBLES-->
     <a name="paquete-ancla"></a>
     <div class="row cuatro">
-        <h1>PAQUETES DISPONIBLES</h1>
+        <h1>{{ $sections["packages"] }}</h1>
         <div class="page_caption_desc" style="font-family: sans-serif !important;">Aprovecha nuestras promociones</div>
     </div>
     <div class="row">
+    @foreach($paquetes as $paquete)
         <div class="col-xs-12 col-sm-4 col-md-4 col-md-lg-4" style="padding-left: 1px; padding-right: 1px;">
+            @auth
+                <a class="btn btn-default btn-editar edit-package" href="#" id="{{ $paquete->id }}" data-toggle="modal" data-target="#myModal" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
+            @endauth
             <a href="info-cancun/index.php#info">
                 <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/Paquete1.jpg" class="img-responsive" alt="">
+                    <img src="{{ $paquete->file }}" class="img-responsive" alt="" id="file{{ $paquete->id }}">
                     <div id="uno">
                         <div class="titulo row" style="width: 100%;">
                             <div class="col-md-6">
-                                <div class="lugar1" >
-                                salida de Veracruz
+                                <div class="lugar1" id="title{{ $paquete->id }}">
+                                {{ $paquete->title }}
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                 <div class="diast" >
-                                 $64,480
+                                 <div class="diast" id="price{{ $paquete->id }}">
+                                 ${{ $paquete->price }}
                                 </div>
                             </div>
                         </div>
                         <div class="titulo row" style="width: 100%;">
                             <div class="col-md-6">
-                                <div class="ruta" >
-                                    Del 17 al 24 de Abril 2019
+                                <div class="ruta" id="dates{{ $paquete->id }}">
+                                    Del {{ $paquete->date_initial }} al {{ $paquete->date_final }}
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="preciot" >
-                                TODO INCLUIDO 8 días / 7 noches
-
+                                <div class="preciot" id="excerpt{{ $paquete->id }}">
+                                {{ $paquete->excerpt }}
                                 </div>
                             </div>
                         </div>
@@ -97,72 +86,60 @@
                 </div>
             </a>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-md-lg-4" style="padding-left: 1px; padding-right: 1px;">
-            <a href="info-cancun/index.php#info">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/Paquete2.jpg" class="img-responsive" alt="">
-                    <div id="uno">
-                        <div class="titulo row" style="width: 100%;">
-                            <div class="col-md-6">
-                                <div class="lugar1" >
-                                salida de Veracruz
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                 <div class="diast" >
-                                 $64,480
-                                </div>
-                            </div>
-                        </div>
-                        <div class="titulo row" style="width: 100%;">
-                            <div class="col-md-6">
-                                <div class="ruta" >
-                                    Del 12 al 19 de Julio 2019
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="preciot" >
-                                TODO INCLUIDO 8 días / 7 noches
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-md-lg-4" style="padding-left: 1px; padding-right: 1px;">
-            <a href="info-puebla/index.php#info">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/Paquete3.jpg" class="img-responsive" alt="">
-                    <div id="uno">
-                        <div class="titulo row" style="width: 100%;">
-                            <div class="col-md-6">
-                                <div class="lugar1" >
-                                salida de Puebla
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="diast" >
-                                    $64,480
-                                </div>
-                            </div>
-                        </div>
-                        <div class="titulo row" style="width: 100%;">
-                            <div class="col-md-6">
-                                <div class="ruta" >
-                                    Del 24 al 31 de Julio 2019
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="preciot" >
-                                TODO INCLUIDO 8 días / 7 noches
+        @endforeach
 
-                                </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header color-red">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title text-center" id="myModalLabel">Actualizar - {{ $sections["packages"] }}</h3>
+                    </div>
+                    <div class="alert alert-warning hidden" role="alert" id="alert-rol" style="font-size: 18px">
+                        <strong>Advertencia!</strong><span></span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-12 text-left">
+                                <label for="title">Título</label>
+                                <input type="text" class="form-control" name="title" id="title"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4 text-left">
+                                <label for="price">Precio</label>
+                                <input type="text" class="form-control" name="price" id="price"/>
+                            </div>
+                            <div class="form-group col-md-8 text-left">
+                                <label for="excerpt">Información</label>
+                                <input type="text" class="form-control" name="excerpt" id="excerpt"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3 text-left">
+                                <label for="date_initial">Inicia</label>
+                                <input type="date" name="date_initial" id="date_initial" value="{{ date('Y-m-d') }}">
+                            </div>
+                            <div class="form-group col-md-3 text-left">
+                                <label for="date_final">Termina</label>
+                                <input type="date" name="date_final" id="date_final" value="{{ date('Y-m-d') }}">
+                            </div>
+                            <div class="form-group col-md-6 text-left">
+                                <label for="file">Imagen</label>
+                                <img src="" alt="package" id="preview-package" class="img-responsive" style="width: 150px; height: 150px;">
+                                <form method="post" id="upload-file" enctype="multipart/form-data">
+                                    <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" alt="package">
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="save_package">Guardar</button>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
     <!--FIN PAQUETES DISPONIBLES-->
@@ -170,40 +147,56 @@
     <!--CONOCE DESTINOS-->
     <div class="row" style="padding-bottom: 38px;">
         <div class="col-xs-12 ">
-            <h1 style="font-weight: 700; font-size: 30px; line-height: 30px; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0; margin-top: 3%;">CONOCE EL DESTINO</h1>
+            <h1 style="font-weight: 700; font-size: 30px; line-height: 30px; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0; margin-top: 3%;">{{ $sections["destinations"] }}</h1>
         </div>
     </div>
     <div class="row cuatro" style="width: 0%;">
         <div class="row imgfont" style="margin-left:0px; margin-right:0px;">
-            <div class="col-md-3">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/destino1.jpg" alt class="thumbnail" style="width: 100%; padding:0px;">
-                    <div id="dos" class="opcion-menu2" style="font-family: sans-serif; font-size: 15px; max-width: 297px; width: 100%; background: rgba(0, 0,0,0.5);">
-                        HOTEL OCEAN COBAL & TURQUESA RIVERA MAYA. TODO INCLUIDO
+            @foreach($destinos as $destino)
+                <div class="col-md-3">
+                    @auth
+                        <a class="btn btn-default btn-editar edit-destinations" href="#" id="{{ $destino->id }}" data-toggle="modal" data-target="#myModalDestinations" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
+                    @endauth
+                    <div id="padre" style="margin-top:10px;">
+                        <img src="{{ $destino->file }}" alt class="thumbnail" style="width: 100%; padding:0px;" id="file-destination{{ $destino->id }}">
+                        <div class="opcion-menu2 dos" style="font-family: sans-serif; font-size: 15px; max-width: 297px; width: 100%; background: rgba(0, 0,0,0.5);" id="title-destination{{ $destino->id }}">
+                            {{ $destino->title }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/destino2.jpg" class="thumbnail" alt style="width: 100%; padding:0px;">
-                    <div id="dos" class="opcion-menu2" style="font-family: sans-serif; font-size: 15px; max-width: 297px; width: 100%; background: rgba(0, 0,0,0.5);">
-                        PARQUE ACUÁTICO XCARET, XEL-HA Y XENSES
+            @endforeach
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModalDestinations" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header color-red">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title text-center" id="myModalLabel">Actualizar - {{ $sections["destinations"] }}</h3>
                     </div>
-                </div>
-            </div>
-            <div class="color1 col-md-3">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/destino3.jpg" alt class="thumbnail" style="width: 100%; padding:0px;">
-                    <div id="dos" class="opcion-menu2" style="font-family: sans-serif; font-size: 15px; max-width: 297px; width: 100%; background: rgba(0, 0,0,0.5);">
-                        PASEO EN YATE, TULÚM Y 5A. AVENIDA
+                    <div class="alert alert-warning hidden" role="alert" id="alert-rol" style="font-size: 18px">
+                        <strong>Advertencia!</strong><span></span>
                     </div>
-                </div>
-            </div>
-            <div class="color1 col-md-3">
-                <div id="padre" style="margin-top:10px;">
-                    <img src="imagenes/destino4.jpg" alt class="thumbnail" style="width: 100%;padding:0px;">
-                    <div id="dos" class="opcion-menu2" style="font-family: sans-serif; font-size: 15px; max-width: 297px; width: 100%;background: rgba(0, 0,0,0.5);">
-                        SHOW CIRQUE DU SOLEIL
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-12 text-left">
+                                <label for="title">Título</label>
+                                <input type="text" class="form-control" name="title-destination" id="title-destination"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 text-left">
+                                <label for="file">Imagen</label>
+                                <img src="" alt="imagen" id="preview-destination" class="img-responsive" style="width: 150px; height: 150px;">
+                                <form method="post" id="upload-file-destination" enctype="multipart/form-data">
+                                    <input type="file" name="file-destination" id="file-destination" accept=".jpg, .jpeg, .png" alt="destination">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="save_destination">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -213,7 +206,7 @@
 
     {{-- TESTIMONIOS --}}
     <div class="row cuatro ">
-        <h1>TESTIMONIOS</h1>
+        <h1>{{ $sections["testimonies"] }}</h1>
         <div class="testimonial_slider_wrapper">
             <div class="flexslider" data-height="750">
                 <ul class="slides">
@@ -240,37 +233,57 @@
     {{-- SERVICIOS --}}
     <a name="servicios-ancla"></a>
     <div class="row cuatro ">
-        <h1 class="opcion-menu2">NUESTROS SERVICIOS</h1>
+        <h1 class="opcion-menu2">{{ $sections["services"] }}</h1>
         <div class="page_caption_desc" style="font-family: sans-serif !important;">¡TE AYUDAMOS A PLANEAR!</div>
     </div>
     <div class="row">
-        <div class="col-md-4 ">
-            <div id="padre" style="margin-top: 15px;">
-                <img src="imagenes/Servicios1.jpg" class="img-responsive" alt="">
-                <div id="unos">
-                    <div class="titulo" style="width: 100%;">
-                           <h1 style="font-size: 20px;"> VIAJES DE GRADUACIÓN </h1>
+        @foreach($services as $service)
+            <div class="col-md-4 ">
+                @auth
+                    <a class="btn btn-default btn-editar edit-services" href="#" id="{{ $service->id }}" data-toggle="modal" data-target="#myModalServices" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
+                @endauth
+                <div id="padre" style="margin-top: 15px;">
+                    <img src="{{ $service->file }}" class="img-responsive" alt="">
+                    <div id="unos">
+                        <div class="titulo" style="width: 100%;">
+                               <h1 style="font-size: 20px;">{{ $service->title }}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div id="padre" style="margin-top: 15px;">
-                <img src="imagenes/Servicios2.jpg" class="img-responsive" alt="">
-                <div id="unos">
-                    <div class="titulo" style="width: 100%;">
-                       <h1 style="font-size: 20px;"> DESPEDIDA DE SOLTERO(A)</h1>
+        @endforeach
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModalServices" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header color-red">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title text-center" id="myModalLabel">Actualizar - {{ $sections["services"] }}</h3>
+                </div>
+                <div class="alert alert-warning hidden" role="alert" id="alert-rol" style="font-size: 18px">
+                    <strong>Advertencia!</strong><span></span>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12 text-left">
+                            <label for="title">Título</label>
+                            <input type="text" class="form-control" name="title-service" id="title-service"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 text-left">
+                            <label for="file">Imagen</label>
+                            <img src="" alt="imagen" id="preview-service" class="img-responsive" style="width: 150px; height: 150px;">
+                            <form method="post" id="upload-file-service" enctype="multipart/form-data">
+                                <input type="file" name="file-service" id="file-service" accept=".jpg, .jpeg, .png" alt="service">
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div id="padre" style="margin-top: 15px;">
-                <img src="imagenes/Servicios3.jpg" class="img-responsive" alt="">
-                <div id="unos">
-                    <div class="titulo" style="width: 100%;">
-                        <h1 style="font-size: 20px;">VIAJES ESCOLARES</h1>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="save_service">Guardar</button>
                 </div>
             </div>
         </div>
@@ -280,7 +293,7 @@
     {{-- ELEGIRNOS --}}
     <a name="elegirnos-ancla"></a>
     <div class="row cuatro ">
-        <h1 class="opcion-menu2">¿PORQUÉ ELEGIRNOS?</h1>
+        <h1 class="opcion-menu2">{{ $sections["we"] }}</h1>
     </div>
     <div class="row">
         <div class="col-md-4 ">
@@ -295,7 +308,7 @@
             <div class="service_icon image">
                 <img src="imagenes/icon-feelings.jpg" alt="">
             </div><br>
-            <h3 class="opcion-menu3" >COMPROMISO</h3>
+            <h3 class="opcion-menu3">COMPROMISO</h3>
             <p style="text-align: justify;">Mantenemos un cercano compromiso con el cliente para ofrecerle las mejores opciones para organizar su viaje, con experiencias únicas y especiales para cada cliente, personalizando la atención.
             </p>
         </div>
@@ -312,4 +325,177 @@
 
     <div class="row " id="tres"></div>
 
+    <script type="text/javascript">
+        var idPackage = 0;
+            idDestination = 0;
+
+        $('.edit-package').click(function() {
+            idPackage = 0;
+            $('#file').val('');
+            $.ajax({
+                type: "GET",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'get_package',
+                data: {'idPackage':$(this).attr("id") },
+                success: function(data)
+                {
+                    $('.modal-body #title').val(data.package.title);
+                    $('.modal-body #price').val(data.package.price);
+                    $('.modal-body #excerpt').val(data.package.excerpt);
+                    $('.modal-body #date_initial').val(data.package.date_initial);
+                    $('.modal-body #date_final').val(data.package.date_final);
+                    $('.modal-body #preview-package').attr("src", data.package.file);
+                    idPackage = data.package.id;
+                },
+                error: function (response) {
+                    console.log("Se generó un error al obtener los detalles del paquete");
+                }
+            });
+        });
+
+        $('#save_package').click(function() {
+            var
+                title           = $('.modal-body #title').val();
+                price           = $('.modal-body #price').val();
+                excerpt         = $('.modal-body #excerpt').val();
+                date_initial    = $('.modal-body #date_initial').val();
+                date_final      = $('.modal-body #date_final').val();
+            var formData = new FormData($("#upload-file")[0]);
+                formData.append('idPackage', idPackage);
+                formData.append('title', title);
+                formData.append('price', price);
+                formData.append('excerpt', excerpt);
+                formData.append('date_initial', date_initial);
+                formData.append('date_final', date_final);
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'update_package',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data)
+                {
+                    $('#title'+idPackage).html(title);
+                    $('#excerpt'+idPackage).html(excerpt);
+                    $('#price'+idPackage).html(price);
+                    $('#dates'+idPackage).html("Del " + date_initial + " al " + date_final);
+                    $('#myModal').modal('hide');
+                    idPackage = 0;
+                },
+                error: function (response) {
+                    console.log("Se generó un error en proceso de actualización de paquete");
+                }
+            });
+        });
+
+        $("input[type='file']").on("change", function(e){
+            console.log("Entra");
+                var TmpPath = URL.createObjectURL(e.target.files[0]);
+            $('.modal-body #preview'+"-"+$(this).attr("alt")).attr("src", TmpPath);
+        });
+
+        $('.edit-destinations').click(function() {
+            idDestination = 0;
+            $('#file-destination').val('');
+            $.ajax({
+                type: "GET",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'get_destination',
+                data: {'idDestination':$(this).attr("id") },
+                success: function(data)
+                {
+                    $('.modal-body #title-destination').val(data.destination.title);
+                    $('.modal-body #preview-destination').attr("src", data.destination.file);
+                    idDestination = data.destination.id;
+                },
+                error: function (response) {
+                    console.log("Se generó un error al obtener los detalles del destino");
+                }
+            });
+        });
+
+        $('#save_destination').click(function() {
+            var
+                title           = $('.modal-body #title-destination').val();
+            var formData = new FormData($("#upload-file-destination")[0]);
+                formData.append('idDestination', idDestination);
+                formData.append('title', title);
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'update_destination',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data)
+                {console.log(idDestination);
+                    $('#title-destination'+idDestination).html(title);
+                    $('#myModalDestinations').modal('hide');
+                    idDestination = 0;
+                },
+                error: function (response) {
+                    console.log("Se generó un error en proceso de actualización de destino");
+                }
+            });
+        });
+
+        $('.edit-services').click(function() {
+            idService = 0;
+            $('#file-service').val('');
+            $.ajax({
+                type: "GET",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'get_service',
+                data: {'idService':$(this).attr("id") },
+                success: function(data)
+                {
+                    $('.modal-body #title-service').val(data.service.title);
+                    $('.modal-body #preview-service').attr("src", data.service.file);
+                    idService = data.service.id;
+                },
+                error: function (response) {
+                    console.log("Se generó un error al obtener los detalles del servicio");
+                }
+            });
+        });
+
+        $('#save_service').click(function() {
+            var
+                title           = $('.modal-body #title-service').val();
+            var formData = new FormData($("#upload-file-service")[0]);
+                formData.append('idService', idService);
+                formData.append('title', title);
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: 'update_service',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data)
+                {
+                    $('#title-service'+idService).html(title);
+                    $('#myModalServices').modal('hide');
+                    idService = 0;
+                },
+                error: function (response) {
+                    console.log("Se generó un error en proceso de actualización de servicio");
+                }
+            });
+        });
+
+    </script>
 @endsection

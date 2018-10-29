@@ -15,4 +15,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('get_package',  'PackagesController@get_package');
+Route::post('update_package',  'PackagesController@update_package');
+
+Route::get('get_destination',  'DestinationsController@get_destination');
+Route::post('update_destination',  'DestinationsController@update_destination');
+
+Route::get('get_service',  'ServicesController@get_service');
+Route::post('update_service',  'ServicesController@update_service');
+
 Route::get('/', 'HomeController@index')->name('home');

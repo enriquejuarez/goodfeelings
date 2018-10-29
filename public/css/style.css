@@ -89,7 +89,7 @@ span.opcion-menu{
         }
 
 
-        #dos {
+        .dos {
 		    position: absolute;
             background:transparent;
             top: 50%;
@@ -640,7 +640,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .container-contacto{
     position: fixed;
     top: 51px;
-    z-index: 3;
+    z-index: 25;
     float: right;
     width: 300px;
     margin-left: 61%;
@@ -676,12 +676,22 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     position: absolute;
     border-radius: 50%;
     color: white;
-    background-color: #00a5cb;
-    z-index: 1000;
+    background: #00a5cb; /* Old browsers */
+    background: -moz-linear-gradient(left, #0190b0 50%, #00a5cb 50%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #0190b0 50%,#00a5cb 50%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to left, #0190b0 50%,#00a5cb 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0190b0', endColorstr='#00a5cb',GradientType=0 ); /* IE6-9 */
+    z-index: 20;
     font-size: 50px;
+    border: none;
 }
 .btn-editar:hover{
-    background-color: #0190b0;
     color: white;
     font-size: 53px;
+}
+.modal-header{
+    background-color: #e88b5c;
+}
+.text-left{
+    text-align: left !important;
 }
