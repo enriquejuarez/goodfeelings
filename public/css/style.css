@@ -695,3 +695,11 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .text-left{
     text-align: left !important;
 }
+.info-paquete span{
+    color: #000000;
+}
+.center-text-paquete{
+    text-align: justify;
+    width: 60%;
+    margin: auto;
+}

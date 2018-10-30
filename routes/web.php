@@ -17,6 +17,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('get_package',  'PackagesController@get_package');
 Route::post('update_package',  'PackagesController@update_package');
+Route::get('get_package_detail5',  'PackagesController@get_package_detail');
+Route::post('update_package_detail',  'PackagesController@update_package_detail');
+Route::get('package_get_details/{id}',  'PackagesController@package_get_details')->name('detalle_paquete');
+
 
 Route::get('get_destination',  'DestinationsController@get_destination');
 Route::post('update_destination',  'DestinationsController@update_destination');

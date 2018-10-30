@@ -56,7 +56,7 @@
             @auth
                 <a class="btn btn-default btn-editar edit-package" href="#" id="{{ $paquete->id }}" data-toggle="modal" data-target="#myModal" style="top: 150px; left: 180px;"><i class="fas fa-pencil-alt"></i></a>
             @endauth
-            <a href="info-cancun/index.php#info">
+            <a href="{{ route('detalle_paquete', $paquete->id) }}">
                 <div id="padre" style="margin-top:10px;">
                     <img src="{{ $paquete->file }}" class="img-responsive" alt="" id="file{{ $paquete->id }}">
                     <div id="uno">
