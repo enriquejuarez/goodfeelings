@@ -24,4 +24,7 @@ Route::post('update_destination',  'DestinationsController@update_destination');
 Route::get('get_service',  'ServicesController@get_service');
 Route::post('update_service',  'ServicesController@update_service');
 
+Route::get('get_section',  'SectionsController@get_section');
+Route::post('update_title_section',  'SectionsController@update_title_section');
+
 Route::get('/', 'HomeController@index')->name('home');

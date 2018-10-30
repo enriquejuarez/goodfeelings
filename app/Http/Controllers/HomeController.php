@@ -42,11 +42,13 @@ class HomeController extends Controller
         $services = Service::orderBy('id', 'DESC')
             ->where('status', 'on')
             ->get();
-        $sections = Section::select('name', 'title')
+        $sections = Section::select('name', 'title', 'id')
             ->where('status', 'on')
             ->get()->mapWithKeys(function ($item) {
-            return [$item['name'] => $item['title']];
+                // return [$item['name'] => $item['title']];
+            return [$item['name'] => $item['id']."-".$item['title']];
         })->toArray();
+            //dd($sections);
         return view('home', compact('fotos', 'paquetes', 'destinos', 'sections', 'services'));
     }
 
